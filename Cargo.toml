@@ -1,14 +1,19 @@
 [package]
-name = "getting-started"
+name = "jump-game"
 version = "0.1.0"
 authors = ["Tej Babu Balireddi <tejbabu91@gmail.com>"]
 
-[[bin]]
-name = "spinning-square"
-path = "src/main.rs"
-
 [dependencies]
-piston = "0.36.0"
-piston2d-graphics = "0.26.0"
-pistoncore-glutin_window = "0.46.0"
-piston2d-opengl_graphics = "0.53.0"
+piston = "0.37.*"
+piston2d-graphics = "*"
+pistoncore-glutin_window = "*"
+piston2d-opengl_graphics = "*"
+piston_window = "*"
+pistoncore-sdl2_window = "*"
+# pistoncore-input = "0.21.*"
+rand = "0.4.*"
+# collision detectio libraries
+nalgebra = "0.15.*"
+# Choose the one you need, or both.
+ncollide2d = "0.16.*"
+
