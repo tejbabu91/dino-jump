@@ -28,4 +28,8 @@ impl Object {
             (self.pos_y + self.height as i32) as f64,
         )
     }
+
+    pub fn do_jump(&mut self) {
+
+    }
 }

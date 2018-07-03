@@ -16,10 +16,15 @@ pub struct App {
     // px per sec
     window_width: u32,
     window_height: u32,
+    // dino
+    jumper: Object,
 }
 
 impl App {
     pub fn new(gl: GlGraphics) -> App {
+        let mut j = Object::new();
+        j.width = 12;
+        j.height = 12;
         App {
             gl: gl,
             obstacles: vec![],
@@ -27,6 +32,7 @@ impl App {
             step_speed: 200.0,
             window_width: 0,
             window_height: 0,
+            jumper: Object::new(),
         }
     }
 
@@ -71,6 +77,21 @@ impl App {
         }
     }
 
+    fn draw_jumper(&mut self, args: &RenderArgs) {
+        self.jumper.pos_x = 10;
+        self.jumper.pos_y = (self.window_height * 2 / 3 - self.jumper.height) as i32;
+        let (x0, y0, x1, y1) = self.jumper.get_draw_coordinates();
+        let obstacle = graphics::rectangle::rectangle_by_corners(x0, y0, x1, y1);
+        self.gl.draw(args.viewport(), |c, gl| {
+            const JUMPER_COLOR: [f32; 4] = [0.0, 1.0, 0.0, 1.0];
+            // graphics::clear(WHITE, gl);
+
+            let transform = c.transform; //.trans(x, y);
+
+            graphics::rectangle(JUMPER_COLOR, obstacle, transform, gl);
+        });
+    }
+
     pub fn render(&mut self, args: &RenderArgs) {
         const BACKGROUND_COLOR: [f32; 4] = [0.66, 0.66, 0.66, 1.0];
         self.window_width = args.width;
@@ -81,6 +102,7 @@ impl App {
         });
         self.draw_line(args);
         self.draw_obstacles(args);
+        self.draw_jumper(args);
     }
 
     pub fn update(&mut self, args: &UpdateArgs) {
