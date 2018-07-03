@@ -11,7 +11,7 @@ piston2d-opengl_graphics = "*"
 piston_window = "*"
 pistoncore-sdl2_window = "*"
 # pistoncore-input = "0.21.*"
-rand = "0.4.*"
+rand = "0.5.*"
 # collision detectio libraries
 nalgebra = "0.15.*"
 # Choose the one you need, or both.
